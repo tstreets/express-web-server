@@ -1,4 +1,3 @@
-const http = require('http');
 const express = require('express');
 const path = require('path');
 
@@ -16,5 +15,6 @@ app.use(
 
 const port = 3000;
 
-const server = http.createServer(app);
-server.listen(port);
+app.listen(port);
+
+module.exports = app;
