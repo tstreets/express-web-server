@@ -12,5 +12,30 @@
         <a href="/contact.html">Contact</a>
     </nav>
     <h1>Hi there!</h1>
+    <button onclick="reloadList()">Reload</button>
+    <ul></ul>
+
+    <script>
+      const ulRef = document.querySelector("ul");
+
+      async function reloadList() {
+        const rawData = await fetch(`https://miniature-disco-j7jgr4jr75qhj6g7-3000.app.github.dev/api/peep`);
+        const parsedData = await rawData.json();
+        ulRef.innerHTML = '';
+        const now = Date.now();
+        parsedData.peeps.forEach(function(peep) {
+            const dateDiff = now - peep.dateCreated;
+            let dateDiffText = 'now';
+            if(dateDiff > 1000 * 10 && dateDiff < 1000 * 60) {
+
+            }
+           ulRef.innerHTML += `<li>${peep.name} (created ${dateDiff})</li>`
+        })
+
+      }
+
+      reloadList();
+
+    </script>
 </body>
 </html>
