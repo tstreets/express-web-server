@@ -1,11 +1,6 @@
-const http = require("http");
 const express = require("express");
-const path = require("path");
 
 const app = express();
-
-app.use(express.static(path.join(__dirname, "views")));
-
 app.use(express.json());
 
 const peeps = [];
@@ -21,11 +16,8 @@ app.post("/api/peep", function (req, res) {
   res.status(200).json(peepData);
 });
 
-// app.get('**', function(req,res,next) {
-//     res.send('<h1>Hi there!</h1>');
-// })
-
 const port = process.env.PORT || 3000;
 
-const server = http.createServer(app);
-server.listen(port);
+app.listen(port);
+
+module.exports = app;
